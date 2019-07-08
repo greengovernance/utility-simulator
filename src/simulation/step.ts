@@ -10,7 +10,6 @@ const step: () => ThunkAction<void, GlobalState, undefined, Action> = () => (
 ) => {
   const state = getState()
   const actions = [...plants.tickActions(state), ...common.tickActions()]
-  console.log('actions', actions)
   for (const a of actions) {
     dispatch(a)
   }

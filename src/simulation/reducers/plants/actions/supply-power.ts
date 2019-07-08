@@ -17,5 +17,6 @@ export const handleSupplyPower = (
     ...state,
     totalCosts: state.totalCosts + payload.cost,
     totalEmissions: state.totalEmissions + payload.emissions,
+    energySupplyThisTick: state.energySupplyThisTick + payload.energy,
   }
 }

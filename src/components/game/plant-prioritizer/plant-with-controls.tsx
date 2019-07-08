@@ -22,7 +22,7 @@ const PlantWithControls: React.SFC<{ id: string }> = (props) => {
       dispatch(
         actions.changePlantPriority({
           id: props.id,
-          newPriority: numberOfPlants,
+          newPriority: numberOfPlants - 1,
         }),
       ),
     [dispatch, props.id, numberOfPlants],
@@ -52,16 +52,24 @@ const PlantWithControls: React.SFC<{ id: string }> = (props) => {
     <div className="plant-with-controls">
       <Plant id={props.id} />
       <div className="controls">
-        <Button onClick={toTop} size="sm">
+        <Button onClick={toTop} size="sm" disabled={currentPriority === 0}>
           Top
         </Button>
-        <Button onClick={upOne} size="sm">
+        <Button onClick={upOne} size="sm" disabled={currentPriority === 0}>
           Up
         </Button>
-        <Button onClick={downOne} size="sm">
+        <Button
+          onClick={downOne}
+          size="sm"
+          disabled={currentPriority === numberOfPlants - 1}
+        >
           Down
         </Button>
-        <Button onClick={toBottom} size="sm">
+        <Button
+          onClick={toBottom}
+          size="sm"
+          disabled={currentPriority === numberOfPlants - 1}
+        >
           Bottom
         </Button>
       </div>

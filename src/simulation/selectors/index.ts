@@ -2,7 +2,7 @@ import * as common from '../reducers/common'
 import * as plants from '../reducers/plants'
 import { GlobalState } from '../create-store'
 
-export const getDemand = () => 10
+export const getDemand = (state: GlobalState) => 10 + getTick(state)
 
 export const getTick = (state: GlobalState) => state[common.mountPoint].tick
 
