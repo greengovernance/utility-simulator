@@ -1,6 +1,7 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import * as plants from './reducers/plants'
 import * as common from './reducers/common'
+import thunk from 'redux-thunk'
 
 export interface GlobalState {
   [common.mountPoint]: common.State
@@ -13,6 +14,6 @@ const reducer = combineReducers({
 })
 
 export default () => {
-  const store = createStore(reducer)
+  const store = createStore(reducer, applyMiddleware(thunk))
   return store
 }

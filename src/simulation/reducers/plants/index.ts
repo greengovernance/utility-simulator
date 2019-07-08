@@ -5,6 +5,8 @@ import {
 } from './actions/change-plant-priority'
 import { State } from './types'
 import { createReducer } from 'redux-act'
+import { GlobalState } from '../../create-store'
+import getSupplyActions from './get-supply-actions'
 
 const initialState: State = {
   totalCosts: 0,
@@ -53,3 +55,7 @@ reducer.on(changePlantPriority, handleChangePlantPriority)
 export const mountPoint: 'plants' = 'plants'
 
 export { State } from './types'
+
+export const tickActions = (state: GlobalState) => {
+  return getSupplyActions(state).map(actions.supplyPower)
+}
