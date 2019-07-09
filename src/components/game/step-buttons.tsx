@@ -2,14 +2,35 @@ import * as React from 'react'
 import { useDispatch } from 'react-redux'
 import step from '../../simulation/step'
 import Button from 'reactstrap/lib/Button'
+import times from 'lodash/times'
 
 const StepButtons: React.SFC<{}> = () => {
   const dispatch = useDispatch()
-  const stepOne = React.useCallback(() => dispatch(step()), [dispatch])
+  const stepHour = React.useCallback(() => dispatch(step()), [dispatch])
+  const stepDay = React.useCallback(() => times(24, () => dispatch(step())), [
+    dispatch,
+  ])
+  const step30Days = React.useCallback(
+    () => times(24 * 30, () => dispatch(step())),
+    [dispatch],
+  )
+  const stepYear = React.useCallback(
+    () => times(24 * 365, () => dispatch(step())),
+    [dispatch],
+  )
   return (
     <div className="step-buttons">
-      <Button color="primary" onClick={stepOne}>
-        Step
+      <Button color="primary" onClick={stepHour}>
+        1 hour
+      </Button>
+      <Button color="primary" onClick={stepDay}>
+        1 day
+      </Button>
+      <Button color="primary" onClick={step30Days}>
+        30 days
+      </Button>
+      <Button color="primary" onClick={stepYear}>
+        1 year
       </Button>
     </div>
   )

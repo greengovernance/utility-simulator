@@ -12,7 +12,8 @@ import { createReducer } from 'redux-act'
 import { GlobalState } from '../../create-store'
 import getSupplyActions from './get-supply-actions'
 import * as common from '../common'
-import { getDemand, getTotalUnderSuppliedEnergy } from '../../selectors'
+import { getDemand } from '../../selectors'
+import createNewPlant from '../create-new-plant'
 
 const initialState: State = {
   totalCosts: 0,
@@ -21,33 +22,9 @@ const initialState: State = {
   energySupplyThisTick: 0,
   energyDemandThisTick: 0,
   prioritizedPlants: [
-    {
-      type: 'solar',
-      capacity: 5,
-      idleCost: 1,
-      operatingCost: 1,
-      emissions: 0,
-      age: 0,
-      id: '1',
-    },
-    {
-      type: 'coal',
-      capacity: 3,
-      idleCost: 0.1,
-      operatingCost: 2,
-      emissions: 1,
-      age: 0,
-      id: '2',
-    },
-    {
-      type: 'coal',
-      capacity: 4,
-      idleCost: 0.2,
-      operatingCost: 4,
-      emissions: 2,
-      age: 0,
-      id: '3',
-    },
+    createNewPlant({ type: 'solar', capacity: 1000 }),
+    createNewPlant({ type: 'coal', capacity: 10000 }),
+    createNewPlant({ type: 'coal', capacity: 10000 }),
   ],
 }
 
@@ -64,8 +41,6 @@ reducer.on(setEnergyDemandThisTick, handleSetEnergyDemandThisTick)
 reducer.on(
   common.actions.nextTick,
   (state): State => {
-    console.log('demand', state.energyDemandThisTick)
-    console.log('supply', state.energySupplyThisTick)
     const underSupply = Math.max(
       0,
       state.energyDemandThisTick - state.energySupplyThisTick,

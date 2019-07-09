@@ -7,50 +7,54 @@ import {
   getNumberOfPlants,
   getPlantPriority,
 } from '../../../simulation/selectors'
+import { Plant as IPlant } from '../../../simulation/reducers/plants/types'
 
-const PlantWithControls: React.SFC<{ id: string }> = (props) => {
+const PlantWithControls: React.SFC<{ plant: IPlant }> = (props) => {
+  const id = props.plant.id
   const dispatch = useDispatch()
   const numberOfPlants = useSelector(getNumberOfPlants)
-  const currentPriority = useSelector(getPlantPriority(props.id))
+  const currentPriority = useSelector(getPlantPriority(props.plant.id))
   const toTop = React.useCallback(
     () =>
-      dispatch(actions.changePlantPriority({ id: props.id, newPriority: 0 })),
-    [dispatch, props.id],
+      dispatch(
+        actions.changePlantPriority({ id: props.plant.id, newPriority: 0 }),
+      ),
+    [dispatch, props.plant.id],
   )
   const toBottom = React.useCallback(
     () =>
       dispatch(
         actions.changePlantPriority({
-          id: props.id,
+          id,
           newPriority: numberOfPlants - 1,
         }),
       ),
-    [dispatch, props.id, numberOfPlants],
+    [dispatch, id, numberOfPlants],
   )
   const upOne = React.useCallback(
     () =>
       dispatch(
         actions.changePlantPriority({
-          id: props.id,
+          id,
           newPriority: currentPriority - 1,
         }),
       ),
-    [dispatch, props.id, currentPriority],
+    [dispatch, id, currentPriority],
   )
   const downOne = React.useCallback(
     () =>
       dispatch(
         actions.changePlantPriority({
-          id: props.id,
+          id,
           newPriority: currentPriority + 1,
         }),
       ),
-    [dispatch, props.id, currentPriority],
+    [dispatch, id, currentPriority],
   )
 
   return (
     <div className="plant-with-controls">
-      <Plant id={props.id} />
+      <Plant plant={props.plant} />
       <div className="controls">
         <Button onClick={toTop} size="sm" disabled={currentPriority === 0}>
           Top
