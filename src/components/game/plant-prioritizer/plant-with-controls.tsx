@@ -8,6 +8,12 @@ import {
   getPlantPriority,
 } from '../../../simulation/selectors'
 import { Plant as IPlant } from '../../../simulation/reducers/plants/types'
+import {
+  MdArrowUpward as TopIcon,
+  MdKeyboardArrowUp as UpIcon,
+  MdKeyboardArrowDown as DownIcon,
+  MdArrowDownward as BottomIcon,
+} from 'react-icons/md'
 
 const PlantWithControls: React.SFC<{ plant: IPlant }> = (props) => {
   const id = props.plant.id
@@ -53,28 +59,42 @@ const PlantWithControls: React.SFC<{ plant: IPlant }> = (props) => {
   )
 
   return (
-    <div className="plant-with-controls">
-      <Plant plant={props.plant} />
-      <div className="controls">
-        <Button onClick={toTop} size="sm" disabled={currentPriority === 0}>
-          Top
-        </Button>
-        <Button onClick={upOne} size="sm" disabled={currentPriority === 0}>
-          Up
+    <div className="plant-with-controls d-flex">
+      <div className="flex-grow-1">
+        <Plant plant={props.plant} />
+      </div>
+      <div className="controls d-flex flex-column">
+        <Button
+          outline
+          onClick={toTop}
+          size="sm"
+          disabled={currentPriority === 0}
+        >
+          <TopIcon />
         </Button>
         <Button
+          outline
+          onClick={upOne}
+          size="sm"
+          disabled={currentPriority === 0}
+        >
+          <UpIcon />
+        </Button>
+        <Button
+          outline
           onClick={downOne}
           size="sm"
           disabled={currentPriority === numberOfPlants - 1}
         >
-          Down
+          <DownIcon />
         </Button>
         <Button
+          outline
           onClick={toBottom}
           size="sm"
           disabled={currentPriority === numberOfPlants - 1}
         >
-          Bottom
+          <BottomIcon />
         </Button>
       </div>
     </div>

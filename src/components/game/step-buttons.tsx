@@ -19,17 +19,20 @@ const StepButtons: React.SFC<{}> = () => {
     [dispatch],
   )
   return (
-    <div className="step-buttons">
-      <Button color="primary" onClick={stepHour}>
+    <div className="step-buttons d-flex justify-content-center">
+      <Button color="text" disabled onClick={stepHour} outline>
+        Advance:
+      </Button>
+      <Button color="primary" onClick={stepHour} outline>
         1 hour
       </Button>
-      <Button color="primary" onClick={stepDay}>
+      <Button color="primary" onClick={stepDay} outline>
         1 day
       </Button>
-      <Button color="primary" onClick={step30Days}>
+      <Button color="primary" onClick={step30Days} outline>
         30 days
       </Button>
-      <Button color="primary" onClick={stepYear}>
+      <Button color="primary" onClick={stepYear} outline>
         1 year
       </Button>
     </div>

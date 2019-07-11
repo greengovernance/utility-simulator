@@ -9,7 +9,9 @@ const PlantPrioritizer: React.SFC<{}> = () => {
     <div className="plant-prioritizer">
       <h2>Your power plants</h2>
       {plants.map((p) => (
-        <PlantWithControls plant={p} key={p.id} />
+        <div className="mb-3">
+          <PlantWithControls plant={p} />
+        </div>
       ))}
     </div>
   )
