@@ -7,6 +7,7 @@ const PlantPrioritizer: React.SFC<{}> = () => {
   const plants = useSelector(getPrioritizedPlants)
   return (
     <div className="plant-prioritizer">
+      <h2>Your power plants</h2>
       {plants.map((p) => (
         <PlantWithControls plant={p} key={p.id} />
       ))}

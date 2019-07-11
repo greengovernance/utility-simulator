@@ -16,3 +16,9 @@ export interface Plant {
   idleCost: number
   emissions: number
 }
+
+export interface PlantConstruction {
+  plant: Plant
+  cost: number
+  ticksRemaining: number
+}

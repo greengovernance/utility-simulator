@@ -13,6 +13,17 @@ import Currency from '../number-formatters/currency'
 import Emissions from '../number-formatters/emissions'
 import Energy from '../number-formatters/energy'
 import Tick from '../number-formatters/tick'
+import Row from 'reactstrap/lib/Row'
+import Col from 'reactstrap/lib/Col'
+
+const Stat: React.SFC<{ label: string }> = (props) => {
+  return (
+    <Col>
+      <div>{props.label}</div>
+      {props.children}
+    </Col>
+  )
+}
 
 const Stats: React.SFC<{}> = () => {
   const tick = useSelector(getTick)
@@ -24,28 +35,23 @@ const Stats: React.SFC<{}> = () => {
     [tick],
   )
   return (
-    <div className="stats">
-      <div>
-        Current tick: <Tick>{tick}</Tick>
-      </div>
-      <div>
-        Amount spent so far: <Currency>{totalCosts}</Currency>
-      </div>
-      <div>
-        Emissions so far: <Emissions>{totalEmissions}</Emissions>
-      </div>
-      <div>
-        Amount of under-supplied energy:{' '}
+    <Row className="stats">
+      <Stat label="Time">
+        <Tick>{tick}</Tick>
+      </Stat>
+      <Stat label="Total spent">
+        <Currency>{totalCosts}</Currency>
+      </Stat>
+      <Stat label="Emissions">
+        <Emissions>{totalEmissions}</Emissions>
+      </Stat>
+      <Stat label="Energy shortfall">
         <Energy>{totalUnderSuppliedEnergy}</Energy>
-      </div>
-      <div>
-        Total demand for next 24 hours: <Energy>{sum(upcomingDemand)}</Energy>
-      </div>
-      <div>
-        Peak demand in next 24 hours:{' '}
+      </Stat>
+      <Stat label="Peak demand in next 24 hrs">
         <Energy>{Math.max(...upcomingDemand)}</Energy>
-      </div>
-    </div>
+      </Stat>
+    </Row>
   )
 }
 

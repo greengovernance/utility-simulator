@@ -12,6 +12,7 @@ import { createReducer } from 'redux-act'
 import { GlobalState } from '../../create-store'
 import getSupplyActions from './get-supply-actions'
 import * as common from '../common'
+import * as plantConstructions from '../plant-constructions'
 import { getDemand } from '../../selectors'
 import createNewPlant from '../create-new-plant'
 
@@ -50,6 +51,25 @@ reducer.on(
       energySupplyThisTick: 0,
       energyDemandThisTick: 0,
       totalUnderSuppliedEnergy: underSupply + state.totalUnderSuppliedEnergy,
+    }
+  },
+)
+reducer.on(
+  plantConstructions.actions.beginPlantConstruction,
+  (state, payload) => {
+    return {
+      ...state,
+      totalCosts: state.totalCosts + payload.cost,
+    }
+  },
+)
+
+reducer.on(
+  plantConstructions.actions.completeConstruction,
+  (state, payload) => {
+    return {
+      ...state,
+      prioritizedPlants: [...state.prioritizedPlants, payload],
     }
   },
 )

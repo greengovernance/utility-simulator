@@ -1,10 +1,11 @@
 import * as common from '../reducers/common'
 import * as plants from '../reducers/plants'
 import { GlobalState } from '../create-store'
-import { Plant } from '../reducers/plants/types'
+import { Plant, PlantConstruction } from '../reducers/plants/types'
 import * as uuid from 'uuid'
 import memoize from 'lodash/memoize'
 import getTickDemand from '../demand/get-tick-demand'
+import createNewPlant from '../reducers/create-new-plant'
 
 export const getDemand = (state: GlobalState) => {
   const tick = getTick(state)
@@ -35,27 +36,21 @@ export const getPlantPriority = (id: string) => (state: GlobalState) =>
   getPrioritizedPlants(state).findIndex((pl) => pl.id === id)
 
 export const getPlantConstructionOptions = memoize(
-  (state: GlobalState): Array<Plant> => {
-    const coalPlants: Plant[] = [
+  (state: GlobalState): Array<PlantConstruction> => {
+    const coalPlants: PlantConstruction[] = [
       {
-        id: uuid.v4(),
-        age: 0,
-        capacity: 10,
-        operatingCost: 2,
-        idleCost: 1,
-        emissions: 4,
-        type: 'coal',
+        plant: createNewPlant({ type: 'coal', capacity: 10000 }),
+        // Source https://www.eia.gov/outlooks/aeo/assumptions/pdf/table_8.2.pdf
+        ticksRemaining: 24 * 365 * 4,
+        cost: 10000 * 5169,
       },
     ]
-    const solarPlants: Plant[] = [
+    const solarPlants: PlantConstruction[] = [
       {
-        id: uuid.v4(),
-        age: 0,
-        capacity: 3,
-        operatingCost: 2,
-        idleCost: 2,
-        emissions: 4,
-        type: 'coal',
+        plant: createNewPlant({ type: 'solar', capacity: 10000 }),
+        // Source https://www.eia.gov/outlooks/aeo/assumptions/pdf/table_8.2.pdf
+        ticksRemaining: 24 * 365 * 2,
+        cost: 1969 * 10000,
       },
     ]
 

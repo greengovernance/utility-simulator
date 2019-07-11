@@ -25,13 +25,14 @@ const createNewPlant = (preset: Pick<Plant, 'capacity' | 'type'>): Plant => {
   }
 
   // TODO: Fix this number. Not sure if per kwh is right metric? and not sure how to find marginal cost -- not including cost of construction
-  const solarCostsPerKwh = 0.1
+  // Assuming maintenance is 10% of that of coal plant
+  const solarCostsPerKwh = 0.000513
   return {
     id: uuid.v4(),
     capacity: preset.capacity,
     type: 'solar',
-    operatingCost: solarCostsPerKwh,
-    idleCost: solarCostsPerKwh,
+    operatingCost: solarCostsPerKwh * preset.capacity,
+    idleCost: solarCostsPerKwh * preset.capacity,
     age: 0,
     emissions: 0,
   }
