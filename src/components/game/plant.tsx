@@ -6,16 +6,26 @@ import { Plant as IPlant } from '../../simulation/reducers/plants/types'
 import Power from '../number-formatters/power'
 import Emissions from '../number-formatters/emissions'
 import Currency from '../number-formatters/currency'
+import getTickCapacity from '../../simulation/reducers/plants/get-tick-capacity'
 
 type Props = { plant: IPlant; className?: string }
 
 const Plant: React.SFC<Props> = (props) => {
   const { plant, className } = props
+  const thisTickCapacity = useSelector(getTickCapacity(plant))
   return (
     <Card className={className}>
       <div>{plant.type} plant</div>
       <div>
-        Capacity: <Power>{plant.capacity}</Power>
+        Capacity:{' '}
+        {plant.capacity !== thisTickCapacity ? (
+          <>
+            <Power>{plant.capacity}</Power> (max);{' '}
+            <Power>{thisTickCapacity}</Power> (right now)
+          </>
+        ) : (
+          <Power>{plant.capacity}</Power>
+        )}
       </div>
       <div>
         Daily emissions: <Emissions>{plant.emissions * 24}</Emissions>

@@ -15,6 +15,7 @@ import Energy from '../number-formatters/energy'
 import Tick from '../number-formatters/tick'
 import Row from 'reactstrap/lib/Row'
 import Col from 'reactstrap/lib/Col'
+import Power from '../number-formatters/power'
 
 const Stat: React.SFC<{ label: string }> = (props) => {
   return (
@@ -48,8 +49,11 @@ const Stats: React.SFC<{}> = () => {
       <Stat label="Energy shortfall">
         <Energy>{totalUnderSuppliedEnergy}</Energy>
       </Stat>
+      <Stat label="Demand">
+        <Power>{upcomingDemand[0]}</Power>
+      </Stat>
       <Stat label="Peak demand in next 24 hrs">
-        <Energy>{Math.max(...upcomingDemand)}</Energy>
+        <Power>{Math.max(...upcomingDemand)}</Power>
       </Stat>
     </Row>
   )
