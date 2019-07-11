@@ -1,5 +1,6 @@
 import * as common from '../reducers/common'
 import * as plants from '../reducers/plants'
+import * as plantConstructions from '../reducers/plant-constructions'
 import { GlobalState } from '../create-store'
 import { Plant, PlantConstruction } from '../reducers/plants/types'
 import * as uuid from 'uuid'
@@ -57,3 +58,7 @@ export const getPlantConstructionOptions = memoize(
     return [...coalPlants, ...solarPlants]
   },
 )
+
+export const getConstructionsInProgress = (state: GlobalState) => {
+  return state[plantConstructions.mountPoint].inProgress
+}

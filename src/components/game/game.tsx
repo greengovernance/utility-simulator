@@ -5,6 +5,7 @@ import StepButtons from './step-buttons'
 import Row from 'reactstrap/lib/Row'
 import Col from 'reactstrap/lib/Col'
 import PlantConstructor from './plant-constructor'
+import ConstructionInProgress from './plant-constructor/construction-in-progress'
 
 const Game: React.SFC<{}> = () => {
   return (
@@ -21,6 +22,7 @@ const Game: React.SFC<{}> = () => {
           </Col>
           <Col md={6}>
             <PlantConstructor />
+            <ConstructionInProgress />
           </Col>
         </Row>
       </div>
