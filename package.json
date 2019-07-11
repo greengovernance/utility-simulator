@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-typescript",
+  "name": "utility-simulator",
   "private": true,
-  "description": "A personalized typescript starter",
+  "description": "Power NYC for the next 50 years.",
   "version": "0.1.0",
-  "author": "Eric McKay",
+  "author": "Eric McKay <eric@greengovernance.org>",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "gatsby": "^2.13.6",
@@ -50,7 +50,7 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -61,10 +61,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/greengovernance/utility-simulator"
   },
   "husky": {
     "hooks": {
