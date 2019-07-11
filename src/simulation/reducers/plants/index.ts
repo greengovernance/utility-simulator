@@ -10,7 +10,7 @@ import {
 import { State } from './types'
 import { createReducer } from 'redux-act'
 import { GlobalState } from '../../create-store'
-import getSupplyActions from './get-supply-actions'
+import getSupplyAction from './get-supply-action'
 import * as common from '../common'
 import * as plantConstructions from '../plant-constructions'
 import { getDemand } from '../../selectors'
@@ -82,6 +82,6 @@ export const tickActions = (state: GlobalState) => {
   const demand = getDemand(state)
   return [
     setEnergyDemandThisTick({ demand }),
-    ...getSupplyActions(state, demand).map(actions.supplyPower),
+    actions.supplyPower(getSupplyAction(state, demand)),
   ]
 }
