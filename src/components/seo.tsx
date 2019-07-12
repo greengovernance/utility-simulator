@@ -8,6 +8,10 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import favicon16 from '../images/favicon-16.png'
+import favicon32 from '../images/favicon-32.png'
+import favicon64 from '../images/favicon-64.png'
+import favicon152 from '../images/favicon-152.png'
 
 interface Props {
   description?: string
@@ -45,8 +49,14 @@ const SEO: React.SFC<Props> = ({
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={title || 'Utility Simulator'}
+      titleTemplate={`%s`}
+      link={[
+        { rel: 'icon', type: 'image/png', href: favicon64 },
+        { rel: 'icon', type: 'image/png', href: favicon32 },
+        { rel: 'icon', type: 'image/png', href: favicon16 },
+        { rel: 'apple-touch-icon', type: 'image/png', href: favicon152 },
+      ]}
       meta={[
         {
           name: `description`,

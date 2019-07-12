@@ -6,7 +6,7 @@ import GameContainer from '../components/game/game-container'
 
 const IndexPage = () => (
   <Layout showAlphaWarning>
-    <SEO title="Home" />
+    <SEO />
     <GameContainer />
   </Layout>
 )
