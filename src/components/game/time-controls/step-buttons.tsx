@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useDispatch } from 'react-redux'
-import step from '../../simulation/step'
+import step from '../../../simulation/step'
 import Button from 'reactstrap/lib/Button'
 import times from 'lodash/times'
 

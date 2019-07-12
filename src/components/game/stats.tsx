@@ -37,9 +37,6 @@ const Stats: React.SFC<{}> = () => {
   )
   return (
     <Row className="stats">
-      <Stat label="Time">
-        <Tick>{tick}</Tick>
-      </Stat>
       <Stat label="Total spent">
         <Currency>{totalCosts}</Currency>
       </Stat>
