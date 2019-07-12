@@ -11,5 +11,3 @@ const getTickDemand = (tick: number) => {
 }
 
 export default getTickDemand
-;(window as any).getTickDemand = getTickDemand
-;(window as any).oneYear = oneYear
