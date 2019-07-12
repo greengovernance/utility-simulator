@@ -24,16 +24,16 @@ const StepButtons: React.SFC<{}> = () => {
         Advance:
       </Button>
       <Button color="primary" onClick={stepHour} outline>
-        1 hour
+        1h
       </Button>
       <Button color="primary" onClick={stepDay} outline>
-        1 day
+        1d
       </Button>
       <Button color="primary" onClick={step30Days} outline>
-        30 days
+        30d
       </Button>
       <Button color="primary" onClick={stepYear} outline>
-        1 year
+        1y
       </Button>
     </div>
   )

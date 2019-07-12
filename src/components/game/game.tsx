@@ -10,7 +10,6 @@ import ConstructionInProgress from './plant-constructor/construction-in-progress
 const Game: React.SFC<{}> = () => {
   return (
     <div>
-      <h1>Utility Simulator: Power NYC for 50 Years</h1>
       <Stats />
       <div className="my-3">
         <StepButtons />

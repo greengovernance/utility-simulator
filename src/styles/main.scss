@@ -1,1 +1,19 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
+
+footer {
+  @extend .bg-light;
+  padding: 1.25rem;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .sponsor-logo {
+    max-height: 2.5rem;
+  }
+  .icons {
+    font-size: 2rem;
+    a {
+      color: black;
+    }
+  }
+}
